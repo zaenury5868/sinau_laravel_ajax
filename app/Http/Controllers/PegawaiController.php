@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pegawai;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class PegawaiController extends Controller
 {
@@ -11,9 +13,14 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pegawai');
+        $list_pegawai = Pegawai::all();
+        // return response()->json($list_pegawai);
+        if($request->ajax()) {
+            return datatables()->of($list_pegawai)->make(true);
+        }
+        return view('pegawai', compact('list_pegawai'));
     }
 
     /**
