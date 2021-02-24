@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
         integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
     <!-- AKHIR STYLE CSS -->
 
 </head>
@@ -21,7 +22,24 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h3> Laravel 8 Ajax CRUD databales dan range date</h3>
+                <h3 class="text-center mb-5"> Laravel 8 Ajax CRUD databales dan range date</h3>
+                <!-- MULAI DATE RANGE PICKER -->
+                <div class="row input-daterange mb-3">
+                    <div class="col-md-4">
+                        <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date"
+                            readonly />
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date"
+                            readonly />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                        <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+                    </div>
+                </div>
+                <!-- AKHIR DATE RANGE PICKER -->
+
                 <!-- MULAI TOMBOL TAMBAH -->
                 <a href="javascript:void(0)" class="btn btn-info mb-3" id="tombol-tambah">Tambah data</a>
                 <!-- AKHIR TOMBOL -->
@@ -144,6 +162,7 @@
         integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"
         integrity="sha256-siqh9650JHbYFKyZeTEAhq+3jvkFCG8Iz+MHdr9eKrw=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <!-- AKHIR LIBARARY JS -->
 
     <!-- JAVASCRIPT -->
