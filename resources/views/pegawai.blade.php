@@ -21,7 +21,7 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h3> Larav</h3>
+                <h3> Laravel 8 Ajax CRUD databales dan range date</h3>
                 <!-- MULAI TOMBOL TAMBAH -->
                 <a href="javascript:void(0)" class="btn btn-info mb-3" id="tombol-tambah">Tambah data</a>
                 <!-- AKHIR TOMBOL -->
@@ -33,6 +33,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Email</th>
                             <th>Alamat</th>
+                            <th>Tanggal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -176,6 +177,7 @@
                     {data: 'jenis_kelamin',name: 'jenis_kelamin'},
                     {data: 'email',name: 'email'},
                     {data: 'alamat',name: 'alamat'},
+                    {data: 'created_at',name: 'created_at'},
                     {data: 'action',name: 'action'},
                 ],
                 order: [[0, 'asc']]
