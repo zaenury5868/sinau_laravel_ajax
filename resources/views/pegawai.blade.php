@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>CRUD AJAX LARAVEL</title>
+    <title>CRUD AJAX LARAVEL 8</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- MULAI STYLE CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -19,13 +19,11 @@
 <body>
     <!-- MULAI CONTAINER -->
     <div class="container">
-
         <div class="card">
-
             <div class="card-body">
+                <h3> Larav</h3>
                 <!-- MULAI TOMBOL TAMBAH -->
-                <a href="javascript:void(0)" class="btn btn-info" id="tombol-tambah">Tambah data</a>
-                <br><br>
+                <a href="javascript:void(0)" class="btn btn-info mb-3" id="tombol-tambah">Tambah data</a>
                 <!-- AKHIR TOMBOL -->
                 <!-- MULAI TABLE -->
                 <table class="table table-striped table-bordered table-sm" id="table_pegawai">
@@ -57,9 +55,7 @@
                     <form id="form-tambah-edit" name="form-tambah-edit" class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-12">
-
                                 <input type="hidden" name="id" id="id">
-
                                 <div class="form-group">
                                     <label for="name" class="col-sm-12 control-label">Nama Pegawai</label>
                                     <div class="col-sm-12">
@@ -67,7 +63,6 @@
                                             value="" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="name" class="col-sm-12 control-label">Jenis Kelamin</label>
                                     <div class="col-sm-12">
@@ -78,7 +73,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="name" class="col-sm-12 control-label">E-mail</label>
                                     <div class="col-sm-12">
@@ -86,23 +80,19 @@
                                             required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="name" class="col-sm-12 control-label">Alamat</label>
                                     <div class="col-sm-12">
                                         <textarea class="form-control" name="alamat" id="alamat" required></textarea>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="col-sm-offset-2 col-sm-12">
                                 <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
                                     value="create">Simpan
                                 </button>
                             </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -113,7 +103,6 @@
     <!-- AKHIR MODAL -->
 
     <!-- MULAI MODAL KONFIRMASI DELETE-->
-
     <div class="modal fade" tabindex="-1" role="dialog" id="konfirmasi-modal" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -140,28 +129,20 @@
 
     <!-- LIBARARY JS -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
-
     <script type="text/javascript" language="javascript"
         src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-
     <script type="text/javascript" language="javascript"
         src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"
         integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"
         integrity="sha256-siqh9650JHbYFKyZeTEAhq+3jvkFCG8Iz+MHdr9eKrw=" crossorigin="anonymous"></script>
-
-
     <!-- AKHIR LIBARARY JS -->
 
     <!-- JAVASCRIPT -->
@@ -247,6 +228,35 @@
                 $('#jenis_kelamin').val(data.jenis_kelamin);
                 $('#email').val(data.email);
                 $('#alamat').val(data.alamat);
+            })
+        });
+
+        $(document).on('click', '.delete', function () {
+            dataId = $(this).attr('id');
+            $('#konfirmasi-modal').modal('show');
+        });
+
+        $('#tombol-hapus').click(function () {
+            $.ajax({
+
+                url: "pegawai/" + dataId,
+                type: 'delete',
+                beforeSend: function () {
+                    $('#tombol-hapus').text('Hapus Data');
+                },
+                success: function (data) {
+                    setTimeout(function () {
+                        $('#konfirmasi-modal').modal('hide');
+                        var oTable = $('#table_pegawai').dataTable();
+                        oTable.fnDraw(false);
+                    });
+                    iziToast.warning({
+                        title: 'Data Berhasil Dihapus',
+                        message: '{{ Session('
+                        delete ')}}',
+                        position: 'bottomRight'
+                    });
+                }
             })
         });
 
